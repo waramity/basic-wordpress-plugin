@@ -35,10 +35,12 @@
 
 	function activate() {
 		echo 'Basic plugin is activated.';
+		flush_rewrite_rules();
 	}
 
 	function deactivate() {
 		echo 'Basic plugin is deactivated.';
+		flush_rewrite_rules();
 	}
 
 	function custom_post_type() {
