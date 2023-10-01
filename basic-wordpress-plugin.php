@@ -26,10 +26,27 @@
 // 	exit;	
 //  }
 
- class BasicPlugin {
+ class BasicPlugin 
+ {
+	function __construct($string) {
+		echo $string;
+	}
 
+	function activate() {
+		echo 'Basic plugin is activated.';
+	}
+
+	function deactivate() {
+		echo 'Basic plugin is deactivated.';
+	}
  }
 
  if(class_exists('BasicPlugin')) {
- 	$basicPlugin = new BasicPlugin();
+ 	$basicPlugin = new BasicPlugin('Basic Plugin Initialize!');
  }
+
+ // activation
+ register_activation_hook(__FILE__, array($basicPlugin, 'activate'));
+
+ // activation
+ register_deactivation_hook(__FILE__, array($basicPlugin, 'deactivate'));
