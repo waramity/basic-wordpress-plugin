@@ -14,3 +14,14 @@
  * Text Domain:       my-basics-plugin
  * Domain Path:       /languages
  */
+
+//  if(!defined('ABSPATH')) {
+// 	die;
+//  }
+
+ defined('ABSPATH') or die('You have\'nt permission to access this file.');
+
+ if(!function_exists('add_actions')) {
+	echo 'You have\'nt permission to access this file.';
+	exit;	
+ }
