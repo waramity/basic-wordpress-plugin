@@ -35,6 +35,7 @@
 
 	function activate() {
 		echo 'Basic plugin is activated.';
+		$this->custom_post_type();
 		flush_rewrite_rules();
 	}
 
@@ -52,8 +53,6 @@
  	$basicPlugin = new BasicPlugin('Basic Plugin Initialize!');
  }
 
- // activation
  register_activation_hook(__FILE__, array($basicPlugin, 'activate'));
-
- // activation
  register_deactivation_hook(__FILE__, array($basicPlugin, 'deactivate'));
+ register_uninstall_hook(__FILE__, array($basicPlugin, 'uninstall'));
