@@ -30,6 +30,7 @@
  {
 	function __construct($string) {
 		echo $string;
+		add_action('init', array($this, 'custom_post_type'));
 	}
 
 	function activate() {
@@ -38,6 +39,10 @@
 
 	function deactivate() {
 		echo 'Basic plugin is deactivated.';
+	}
+
+	function custom_post_type() {
+		register_post_type('book', ['public' => true, 'label' => 'Books']);
 	}
  }
 
