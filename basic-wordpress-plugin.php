@@ -26,6 +26,14 @@ defined('ABSPATH') or die('You have\'nt permission to access this file.');
 // 	exit;	
 //  }
 
+if ( file_exists( dirname( __FILE__ ) . '/vendor/autoload.php' ) ) {
+	require_once dirname( __FILE__ ) . '/vendor/autoload.php';
+}
+
+use Inc\Activate;
+// use Inc\Deactivate;
+// use Inc\Admin\AdminPages;
+
 if (!class_exists('AlecadddPlugin')) {
 
 	class BasicPlugin
@@ -95,8 +103,9 @@ if (!class_exists('AlecadddPlugin')) {
 
 		function activate()
 		{
-			require_once plugin_dir_path(__FILE__) . 'inc/basic-wordpress-plugin-activate.php';
-			BasicPluginActivate::activate();
+			// require_once plugin_dir_path(__FILE__) . 'inc/basic-wordpress-plugin-activate.php';
+			// BasicPluginActivate::activate();
+			Activate::activate();
 		}
 
 		// function deactivate()
@@ -132,8 +141,10 @@ if (!class_exists('AlecadddPlugin')) {
 	register_activation_hook( __FILE__, array( $basicPlugin, 'activate' ) );
 
 	// deactivation
-	require_once plugin_dir_path( __FILE__ ) . 'inc/basic-wordpress-plugin-deactivate.php';
-	register_deactivation_hook( __FILE__, array( 'BasicPluginDeactivate', 'deactivate' ) );
+	// require_once plugin_dir_path( __FILE__ ) . 'inc/basic-wordpress-plugin-deactivate.php';
+	// register_deactivation_hook( __FILE__, array( 'BasicPluginDeactivate', 'deactivate' ) );
+	register_deactivation_hook( __FILE__, array( 'Inc\Deactivate', 'deactivate' ) );
+
 
 }
 
@@ -154,8 +165,8 @@ if (class_exists('BasicPlugin')) {
 	// BasicPlugin::register();
 }
 
-$secondClass = new SecondClass('Second Initialize!');
-$secondClass->register_post_type();
+// $secondClass = new SecondClass('Second Initialize!');
+// $secondClass->register_post_type();
 
 //  register_activation_hook(__FILE__, array($basicPlugin, 'activate'));
 //  register_deactivation_hook(__FILE__, array($basicPlugin, 'deactivate'));
