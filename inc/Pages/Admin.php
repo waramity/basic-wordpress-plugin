@@ -4,8 +4,9 @@
  */
 namespace Inc\Pages;
 
-use \Inc\Base\BaseController;
 use \Inc\Api\SettingsApi;
+use \Inc\Base\BaseController;
+use Inc\Api\Callbacks\AdminCallbacks;
 
 /**
  * 
@@ -14,34 +15,45 @@ class Admin extends BaseController
 {
 
 	public $settings;
+	public $callbacks;
 	public $pages = array();
 	public $subpages = array();
 
 	public function __construct()
 	{
-		$this->settings = new SettingsApi();
+	}
 
+	public function register()
+	{
+
+		$this->settings = new SettingsApi();
+		$this->callbacks = new AdminCallbacks();
+
+		// add_action('admin_menu', array($this, 'add_admin_pages'));
+		// $this->settings->addPages( $this->pages )->register();
+		$this->setPages();
+		$this->setSubpages();
+		$this->settings->addPages( $this->pages )->withSubPage( 'Dashboard' )->addSubPages( $this->subpages )->register();
+	}
+
+	// public function add_admin_pages() {
+	// 	add_menu_page( 'Basic Plugin Page Title', 'Basic Plugin Menu Title', 'manage_options', 'basic_plugin_menu_slug', array( $this, 'admin_index' ), 'dashicons-store', 110 );
+	// }
+	public function setPages(){
 		$this->pages = array(
 			array(
 				'page_title' => 'Basic Plugin', 
 				'menu_title' => 'Basic Menu Title', 
 				'capability' => 'manage_options', 
 				'menu_slug' => 'basic_plugin_menu_slug', 
-				'callback' => function() { echo '<h1>Basic Plugin</h1>'; }, 
+				'callback' => array( $this->callbacks, 'adminDashboard' ), 
 				'icon_url' => 'dashicons-store', 
 				'position' => 110
-			),
-			array(
-				'page_title' => 'Basic Plugin 2', 
-				'menu_title' => 'Basic Menu Title 2', 
-				'capability' => 'manage_options', 
-				'menu_slug' => 'basic_plugin_menu_slug_2', 
-				'callback' => function() { echo '<h1>Basic Plugin 2</h1>'; }, 
-				'icon_url' => 'dashicons-store', 
-				'position' => 110
-			)
+			)		
 		);
+	}
 
+	public function setSubpages(){
 		$this->subpages = array(
 			array(
 				'parent_slug' => 'basic_plugin_menu_slug', 
@@ -49,7 +61,7 @@ class Admin extends BaseController
 				'menu_title' => 'CPT', 
 				'capability' => 'manage_options', 
 				'menu_slug' => 'alecaddd_cpt', 
-				'callback' => function() { echo '<h1>CPT Manager</h1>'; }
+				'callback' => array( $this->callbacks, 'adminCpt' )
 			),
 			array(
 				'parent_slug' => 'basic_plugin_menu_slug', 
@@ -57,30 +69,18 @@ class Admin extends BaseController
 				'menu_title' => 'Taxonomies', 
 				'capability' => 'manage_options', 
 				'menu_slug' => 'alecaddd_taxonomies', 
-				'callback' => function() { echo '<h1>Taxonomies Manager</h1>'; }
+				'callback' => array( $this->callbacks, 'adminTaxonomy' )
 			),
 			array(
-				'parent_slug' => 'basic_plugin_menu_slug_2', 
+				'parent_slug' => 'basic_plugin_menu_slug', 
 				'page_title' => 'Custom Widgets', 
 				'menu_title' => 'Widgets', 
 				'capability' => 'manage_options', 
 				'menu_slug' => 'alecaddd_widgets', 
-				'callback' => function() { echo '<h1>Widgets Manager</h1>'; }
+				'callback' => array( $this->callbacks, 'adminWidget' )
 			)
 		);
 	}
-
-	public function register()
-	{
-
-		// add_action('admin_menu', array($this, 'add_admin_pages'));
-		// $this->settings->addPages( $this->pages )->register();
-		$this->settings->addPages( $this->pages )->withSubPage( 'Dashboard' )->addSubPages( $this->subpages )->register();
-	}
-
-	// public function add_admin_pages() {
-	// 	add_menu_page( 'Basic Plugin Page Title', 'Basic Plugin Menu Title', 'manage_options', 'basic_plugin_menu_slug', array( $this, 'admin_index' ), 'dashicons-store', 110 );
-	// }
 
 	public function admin_index() {
 		// require_once PLUGIN_PATH . 'templates/admin.php';
