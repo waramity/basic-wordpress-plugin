@@ -43,24 +43,44 @@ if (!class_exists('AlecadddPlugin')) {
 		// Static
 
 		protected $array1 = array();
+		public $plugin;
 
 		function __construct($string)
 		{
 			echo $string;
 			// add_action('init', array($this, 'custom_post_type'));
 			// $this->create_post_type();
+			$this->plugin = plugin_basename( __FILE__ );
 		}
 
 		// Non-static method
-		// public function register() {
-		// 	add_action('admin_enqueue_scripts', array($this, 'enqueue'));
-		// }
+		public function register() {
+			add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+
+			add_action('admin_menu', array ($this, 'add_admin_pages'));
+
+			add_filter( "plugin_action_links_$this->plugin", array( $this, 'settings_link' ) );
+		}
+		public function settings_link( $links ) {
+			$settings_link = '<a href="admin.php?page=basic_plugin_menu_slug">Settings</a>';
+			array_push( $links, $settings_link );
+			return $links;
+		}
+
+		public function add_admin_pages() {
+			add_menu_page( 'Basic Plugin Page Title', 'Basic Plugin Menu Title', 'manage_options', 'basic_plugin_menu_slug', array( $this, 'admin_index' ), 'dashicons-store', 110 );
+		}
+
+		public function admin_index() {
+			require_once plugin_dir_path( __FILE__ ) . 'templates/admin.php';
+		}
 
 		// Static method
-		public static function register()
-		{
-			add_action('admin_enqueue_scripts', array('BasicPlugin', 'enqueue'));
-		}
+		// public static function register()
+		// {
+		// 	add_action('admin_enqueue_scripts', array('BasicPlugin', 'enqueue'));
+
+		// }
 
 		protected function create_post_type()
 		{
@@ -131,7 +151,7 @@ if (class_exists('BasicPlugin')) {
 	// $basicPlugin = new BasicPlugin('Basic Plugin Initialize!');
 	// $basicPlugin->register();
 	// Static method
-	BasicPlugin::register();
+	// BasicPlugin::register();
 }
 
 $secondClass = new SecondClass('Second Initialize!');

@@ -1,0 +1,1 @@
+<h1>Basic Plugin</h1>
