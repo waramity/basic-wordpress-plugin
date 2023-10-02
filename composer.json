@@ -1,0 +1,8 @@
+{
+    "name": "waramity/basic-wordpress-plugin",
+    "description": "Basic wordpress plugin example",
+    "type": "project",
+    "license": "GPL",
+    "minimum-stability": "dev",
+    "require": {}
+}
