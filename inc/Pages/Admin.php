@@ -65,7 +65,7 @@ class Admin extends BaseController
 				'page_title' => 'Custom Post Types', 
 				'menu_title' => 'CPT', 
 				'capability' => 'manage_options', 
-				'menu_slug' => 'alecaddd_cpt', 
+				'menu_slug' => 'basic_cpt', 
 				'callback' => array( $this->callbacks, 'adminCpt' )
 			),
 			array(
@@ -73,7 +73,7 @@ class Admin extends BaseController
 				'page_title' => 'Custom Taxonomies', 
 				'menu_title' => 'Taxonomies', 
 				'capability' => 'manage_options', 
-				'menu_slug' => 'alecaddd_taxonomies', 
+				'menu_slug' => 'basic_taxonomies', 
 				'callback' => array( $this->callbacks, 'adminTaxonomy' )
 			),
 			array(
@@ -81,7 +81,7 @@ class Admin extends BaseController
 				'page_title' => 'Custom Widgets', 
 				'menu_title' => 'Widgets', 
 				'capability' => 'manage_options', 
-				'menu_slug' => 'alecaddd_widgets', 
+				'menu_slug' => 'basic_widgets', 
 				'callback' => array( $this->callbacks, 'adminWidget' )
 			)
 		);
