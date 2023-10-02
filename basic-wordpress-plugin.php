@@ -33,6 +33,10 @@
 		add_action('init', array($this, 'custom_post_type'));
 	}
 
+	function register() {
+		add_action('admin_enqueue_scripts', array($this, 'enqueue'));
+	}
+
 	function activate() {
 		echo 'Basic plugin is activated.';
 		$this->custom_post_type();
@@ -47,10 +51,16 @@
 	function custom_post_type() {
 		register_post_type('book', ['public' => true, 'label' => 'Books']);
 	}
+
+	function enqueue() {
+		wp_enqueue_style('plugin_style', plugins_url('/assets/style.css', __FILE__));
+		wp_enqueue_script('plugin_script', plugins_url('/assets/script.js', __FILE__));
+	}
  }
 
  if(class_exists('BasicPlugin')) {
  	$basicPlugin = new BasicPlugin('Basic Plugin Initialize!');
+	$basicPlugin->register();
  }
 
  register_activation_hook(__FILE__, array($basicPlugin, 'activate'));
