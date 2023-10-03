@@ -28,7 +28,7 @@ var browserSync  = require( 'browser-sync' ).create();
 var reload       = browserSync.reload;
 
 // Project related variables
-var projectURL   = 'https://test.dev';
+var projectURL = 'localhost';
 
 var styleSRC     = './src/scss/style.scss';
 var styleURL     = './assets/';
@@ -42,16 +42,13 @@ var jsWatch      = './src/js/**/*.js';
 var phpWatch     = './**/*.php';
 
 // Tasks
-gulp.task( 'browser-sync', function() {
-	browserSync.init({
-		proxy: projectURL,
-		https: {
-			key: '/Users/waramity/.valet/Certificates/test.dev.key',
-			cert: '/Users/waramity/.valet/Certificates/test.dev.crt'
-		},
-		injectChanges: true,
-		open: false
-	});
+gulp.task('browser-sync', function() {
+    browserSync.init({
+        proxy: projectURL,
+        port: 8080, // Change this to your desired port number
+        injectChanges: true,
+        open: false
+    });
 });
 
 gulp.task( 'styles', function() {
