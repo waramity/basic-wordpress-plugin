@@ -21,10 +21,6 @@ class Admin extends BaseController
 	public $pages = array();
 	public $subpages = array();
 
-	public function __construct()
-	{
-	}
-
 	public function register()
 	{
 
@@ -94,53 +90,65 @@ class Admin extends BaseController
 
 	public function setSettings()
 	{
-		$args = array(
-			array(
+		$args = array();
+		var_dump($this->managers);
+		var_dump($this->plugin_path);
+
+		foreach ($this->managers as $key => $value) {
+			$args[] = array(
 				'option_group' => 'basic_plugin_settings',
-				'option_name' => 'cpt_manager',
+				'option_name' => $key,
 				'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
-			),
-			array(
-				'option_group' => 'basic_plugin_settings',
-				'option_name' => 'taxonomy_manager',
-				'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
-			),
-			array(
-				'option_group' => 'basic_plugin_settings',
-				'option_name' => 'media_widget',
-				'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
-			),
-			array(
-				'option_group' => 'basic_plugin_settings',
-				'option_name' => 'gallery_manager',
-				'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
-			),
-			array(
-				'option_group' => 'basic_plugin_settings',
-				'option_name' => 'testimonial_manager',
-				'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
-			),
-			array(
-				'option_group' => 'basic_plugin_settings',
-				'option_name' => 'templates_manager',
-				'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
-			),
-			array(
-				'option_group' => 'basic_plugin_settings',
-				'option_name' => 'login_manager',
-				'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
-			),
-			array(
-				'option_group' => 'basic_plugin_settings',
-				'option_name' => 'membership_manager',
-				'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
-			),
-			array(
-				'option_group' => 'basic_plugin_settings',
-				'option_name' => 'chat_manager',
-				'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
-			)
-		);
+			);
+		}
+
+		// $args = array(
+		// 	array(
+		// 		'option_group' => 'basic_plugin_settings',
+		// 		'option_name' => 'cpt_manager',
+		// 		'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
+		// 	),
+		// 	array(
+		// 		'option_group' => 'basic_plugin_settings',
+		// 		'option_name' => 'taxonomy_manager',
+		// 		'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
+		// 	),
+		// 	array(
+		// 		'option_group' => 'basic_plugin_settings',
+		// 		'option_name' => 'media_widget',
+		// 		'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
+		// 	),
+		// 	array(
+		// 		'option_group' => 'basic_plugin_settings',
+		// 		'option_name' => 'gallery_manager',
+		// 		'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
+		// 	),
+		// 	array(
+		// 		'option_group' => 'basic_plugin_settings',
+		// 		'option_name' => 'testimonial_manager',
+		// 		'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
+		// 	),
+		// 	array(
+		// 		'option_group' => 'basic_plugin_settings',
+		// 		'option_name' => 'templates_manager',
+		// 		'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
+		// 	),
+		// 	array(
+		// 		'option_group' => 'basic_plugin_settings',
+		// 		'option_name' => 'login_manager',
+		// 		'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
+		// 	),
+		// 	array(
+		// 		'option_group' => 'basic_plugin_settings',
+		// 		'option_name' => 'membership_manager',
+		// 		'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
+		// 	),
+		// 	array(
+		// 		'option_group' => 'basic_plugin_settings',
+		// 		'option_name' => 'chat_manager',
+		// 		'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
+		// 	)
+		// );
 
 		$this->settings->setSettings($args);
 	}
