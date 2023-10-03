@@ -90,17 +90,23 @@ class Admin extends BaseController
 
 	public function setSettings()
 	{
-		$args = array();
-		var_dump($this->managers);
-		var_dump($this->plugin_path);
+		// $args = array();
+		// var_dump($this->managers);
+		// var_dump($this->plugin_path);
 
-		foreach ($this->managers as $key => $value) {
-			$args[] = array(
-				'option_group' => 'basic_plugin_settings',
-				'option_name' => $key,
-				'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
-			);
-		}
+		// foreach ($this->managers as $key => $value) {
+		// 	$args[] = array(
+		// 		'option_group' => 'basic_plugin_settings',
+		// 		'option_name' => $key,
+		// 		'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
+		// 	);
+		// }
+
+		$args[] = array(
+			'option_group' => 'basic_plugin_settings',
+			'option_name' => 'basic_plugin',
+			'callback' => array($this->callbacks_mngr, 'checkboxSanitize')
+		);
 
 		// $args = array(
 		// 	array(
@@ -172,14 +178,15 @@ class Admin extends BaseController
 	{
 		$args = array();
 
-		foreach ( $this->managers as $key => $value ) {
+		foreach ($this->managers as $key => $value) {
 			$args[] = array(
 				'id' => $key,
 				'title' => $value,
-				'callback' => array( $this->callbacks_mngr, 'checkboxField' ),
+				'callback' => array($this->callbacks_mngr, 'checkboxField'),
 				'page' => 'basic_plugin_menu_slug',
 				'section' => 'basic_admin_index',
 				'args' => array(
+					'option_name' => 'basic_plugin',
 					'label_for' => $key,
 					'class' => 'ui-toggle'
 				)
