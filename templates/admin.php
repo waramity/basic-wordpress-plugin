@@ -13,7 +13,7 @@
 
             <form method="post" action="options.php">
                 <?php
-                settings_fields('basic_options_group');
+                settings_fields('basic_plugin_settings');
                 do_settings_sections('basic_plugin_menu_slug');
                 submit_button();
                 ?>
