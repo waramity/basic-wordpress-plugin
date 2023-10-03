@@ -1,29 +1,28 @@
 {
-  "name": "basic-wordpress-plugin",
-  "description": "Full list of sections and features we will build during the series of Tutorials",
-  "version": "1.0.0",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/waramity/basic-wordpress-plugin.git"
-  },
-  "keywords": [
-    "wordpress",
+	"name": "basic-wordpress-plugin",
+	"description": "Full list of sections and features we will build during the series of Tutorials",
+	"version": "1.0.0",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/waramity/basic-wordpress-plugin.git"
+	},
+	"keywords": [
+		"wordpress",
 		"plugin",
 		"PHP",
 		"composer",
 		"gulp",
 		"es6",
 		"scss"
-  ],
-  "author": "waramity",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/waramity/basic-wordpress-plugin/issues"
-  },
-  "homepage": "https://github.com/waramity/basic-wordpress-plugin#readme",
-  "dependencies": {
-  },
-  "devDependencies": {
+	],
+	"author": "waramity",
+	"license": "GPL-3.0",
+	"bugs": {
+		"url": "https://github.com/waramity/basic-wordpress-plugin/issues"
+	},
+	"homepage": "https://github.com/waramity/basic-wordpress-plugin#readme",
+	"dependencies": {},
+	"devDependencies": {
 		"babel-core": "^6.26.0",
 		"babel-preset-env": "^1.6.1",
 		"babelify": "^8.0.0",
@@ -43,12 +42,15 @@
 		"gulp-strip-debug": "^1.1.0",
 		"gulp-uglify": "^3.0.0",
 		"gulp-uglifycss": "^1.0.9",
-    "@prettier/plugin-php": "^0.20.1",
-    "prettier": "^3.0.3",
+		"@prettier/plugin-php": "^0.20.1",
+		"prettier": "^3.0.3",
 		"vinyl-buffer": "^1.0.0",
 		"vinyl-source-stream": "^1.1.0"
 	},
-  "babel": {
+  "resolutions": {
+    "graceful-fs": "^4.2.11"
+  },
+	"babel": {
 		"presets": [
 			"env"
 		]
