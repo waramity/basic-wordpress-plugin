@@ -12,14 +12,14 @@ use Inc\Api\Callbacks\AdminCallbacks;
 /**
  * 
  */
-class Admin extends BaseController
+class Dashboard extends BaseController
 {
 
 	public $settings;
 	public $callbacks;
 	public $callbacks_mngr;
 	public $pages = array();
-	public $subpages = array();
+	// public $subpages = array();
 
 	public function register()
 	{
@@ -31,13 +31,14 @@ class Admin extends BaseController
 		// add_action('admin_menu', array($this, 'add_admin_pages'));
 		// $this->settings->addPages( $this->pages )->register();
 		$this->setPages();
-		$this->setSubpages();
+		// $this->setSubpages();
 
 		$this->setSettings();
 		$this->setSections();
 		$this->setFields();
 
-		$this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subpages)->register();
+		// $this->settings->addPages($this->pages)->withSubPage('Dashboard')->addSubPages($this->subpages)->register();
+		$this->settings->addPages($this->pages)->withSubPage('Dashboard')->register();
 	}
 
 	// public function add_admin_pages() {
@@ -58,35 +59,35 @@ class Admin extends BaseController
 		);
 	}
 
-	public function setSubpages()
-	{
-		$this->subpages = array(
-			array(
-				'parent_slug' => 'basic_plugin_menu_slug',
-				'page_title' => 'Custom Post Types',
-				'menu_title' => 'CPT',
-				'capability' => 'manage_options',
-				'menu_slug' => 'basic_cpt',
-				'callback' => array($this->callbacks, 'adminCpt')
-			),
-			array(
-				'parent_slug' => 'basic_plugin_menu_slug',
-				'page_title' => 'Custom Taxonomies',
-				'menu_title' => 'Taxonomies',
-				'capability' => 'manage_options',
-				'menu_slug' => 'basic_taxonomies',
-				'callback' => array($this->callbacks, 'adminTaxonomy')
-			),
-			array(
-				'parent_slug' => 'basic_plugin_menu_slug',
-				'page_title' => 'Custom Widgets',
-				'menu_title' => 'Widgets',
-				'capability' => 'manage_options',
-				'menu_slug' => 'basic_widgets',
-				'callback' => array($this->callbacks, 'adminWidget')
-			)
-		);
-	}
+	// public function setSubpages()
+	// {
+	// 	$this->subpages = array(
+	// 		array(
+	// 			'parent_slug' => 'basic_plugin_menu_slug',
+	// 			'page_title' => 'Custom Post Types',
+	// 			'menu_title' => 'CPT',
+	// 			'capability' => 'manage_options',
+	// 			'menu_slug' => 'basic_cpt',
+	// 			'callback' => array($this->callbacks, 'adminCpt')
+	// 		),
+	// 		array(
+	// 			'parent_slug' => 'basic_plugin_menu_slug',
+	// 			'page_title' => 'Custom Taxonomies',
+	// 			'menu_title' => 'Taxonomies',
+	// 			'capability' => 'manage_options',
+	// 			'menu_slug' => 'basic_taxonomies',
+	// 			'callback' => array($this->callbacks, 'adminTaxonomy')
+	// 		),
+	// 		array(
+	// 			'parent_slug' => 'basic_plugin_menu_slug',
+	// 			'page_title' => 'Custom Widgets',
+	// 			'menu_title' => 'Widgets',
+	// 			'capability' => 'manage_options',
+	// 			'menu_slug' => 'basic_widgets',
+	// 			'callback' => array($this->callbacks, 'adminWidget')
+	// 		)
+	// 	);
+	// }
 
 	public function setSettings()
 	{

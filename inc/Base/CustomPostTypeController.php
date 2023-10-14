@@ -36,7 +36,7 @@ class CustomPostTypeController extends BaseController
 	{
 		$this->subpages = array(
 			array(
-				'parent_slug' => 'basic_plugin', 
+				'parent_slug' => 'basic_plugin_menu_slug', 
 				'page_title' => 'Custom Post Types', 
 				'menu_title' => 'CPT Manager', 
 				'capability' => 'manage_options', 
