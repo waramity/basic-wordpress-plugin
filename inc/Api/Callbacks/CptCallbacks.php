@@ -11,7 +11,7 @@ class CptCallbacks
     {
         echo 'Create as many Custom Post Types as you want.';
     }
-    public function cptsanitized($input)
+    public function cptsanitize($input)
     {
         return $input;
 
