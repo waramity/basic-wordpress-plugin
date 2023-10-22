@@ -12,3 +12,7 @@ Full list of sections and features we will build during the series of Tutorials
 * Ajax based Login/Register system
 * Membership protected area
 * Chat system
+
+
+composer install
+gulp watch
